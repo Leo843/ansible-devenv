@@ -1,0 +1,19 @@
+- name: install bash
+  become: yes
+  ansible.builtin.package:
+    name: bash
+    state: present
+
+- name: clone bash configuration repository
+  ansible.builtin.git:
+    repo: git@github.com:Leo843/leo-bash.git
+    dest: ~/.bash
+    depth: 1
+    accept_hostkey: true
+
+- name: create a symbolic link to ~/.bash/.bashrc
+  ansible.builtin.file:
+    src: ~/.bash/.bashrc
+    dest: ~/.bashrc
+    state: link
+    force: true

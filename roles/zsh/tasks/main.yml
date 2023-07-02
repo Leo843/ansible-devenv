@@ -1,0 +1,18 @@
+- name: install zsh
+  become: yes
+  ansible.builtin.package:
+    name: zsh
+    state: present
+
+- name: clone zsh configuration repository
+  ansible.builtin.git:
+    repo: git@github.com:Leo843/leo-zsh.git
+    dest: ~/.zsh
+    depth: 1
+    accept_hostkey: true
+
+- name: create a symbolic link to ~/.zsh/.zshrc
+  ansible.builtin.file:
+    src: ~/.zsh/.zshrc
+    dest: ~/.zshrc
+    state: link

@@ -1,0 +1,14 @@
+- name: deploy development tools
+  hosts: all
+  roles:
+    - zsh
+    - bash
+    - neovim
+    - fzf
+
+  tasks:
+  - name: set zsh as login shell
+    become: yes
+    ansible.builtin.user:
+      name: "{{ lookup('env', 'USER') }}"
+      shell: /usr/bin/zsh

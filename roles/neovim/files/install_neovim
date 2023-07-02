@@ -1,0 +1,55 @@
+#!/bin/sh
+
+INSTALL_DIR=~/.neovim
+WORKING_DIR=$(mktemp -d)
+SYMLINK_DIR=~/.local/bin
+SYMLINK_BIN=$SYMLINK_DIR/nvim
+
+cleanup()
+{
+  rm -rf $WORKING_DIR
+}
+
+trap cleanup EXIT
+
+commit_neovim()
+{
+  # move neovim to install directory
+  rm -rf $INSTALL_DIR
+  mv squashfs-root/usr $INSTALL_DIR
+
+  # create a symlink to open neovim from command line
+  rm -f  $SYMLINK_BIN
+  mkdir -p $SYMLINK_DIR
+  ln -s $INSTALL_DIR/bin/nvim $SYMLINK_BIN
+}
+
+install_neovim()
+{
+  # download and extract latest neovim release
+  URL=https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+  curl -sSfLO  $URL || exit 1
+  chmod u+x nvim.appimage
+  ./nvim.appimage --appimage-extract > /dev/null || exit 1
+
+  # only update neovim if no version is installed or if a newer version is
+  # available
+  if [ -f "$SYMLINK_BIN" ]
+  then
+    CUR_VERSION=$($SYMLINK_BIN --version | head -n 1)
+    NEW_VERSION=$(./squashfs-root/AppRun --version | head -n 1)
+    if [ "$CUR_VERSION" == "$NEW_VERSION" ]
+    then
+      echo 'already up to date'
+      exit 0
+    else
+      commit_neovim
+      echo 'updated'
+    fi
+  else
+    commit_neovim
+    echo 'installed'
+  fi
+}
+
+echo -n "$(cd $WORKING_DIR && install_neovim)"

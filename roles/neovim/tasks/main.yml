@@ -1,0 +1,12 @@
+- name: install neovim
+  ansible.builtin.script: install_neovim
+  register: install_neovim_result
+  changed_when: install_neovim_result.stdout == 'installed' or
+    install_neovim_result.stdout == 'updated'
+
+- name: clone neovim configuration repository
+  ansible.builtin.git:
+    repo: git@github.com:Leo843/nvim-config.git
+    dest: ~/.config/nvim
+    depth: 1
+    accept_hostkey: true
