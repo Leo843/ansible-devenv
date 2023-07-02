@@ -1,0 +1,14 @@
+- name: install apt repository for httpie
+  become: yes
+  ansible.builtin.script:
+    cmd: install_httpie_apt_repo
+    creates: /etc/apt/sources.list.d/httpie.list
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: install httpie
+  become: yes
+  ansible.builtin.apt:
+    name: httpie
+    state: present
+    update_cache: true
+  when: ansible_facts['os_family'] == "Debian"

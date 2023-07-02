@@ -9,3 +9,45 @@
   ansible.builtin.package:
     name: git
     state: present
+
+- name: install tree
+  become: yes
+  ansible.builtin.package:
+    name: tree
+    state: present
+
+- name: install jq
+  become: yes
+  ansible.builtin.package:
+    name: jq
+    state: present
+
+- name: install ripgrep
+  become: yes
+  ansible.builtin.package:
+    name: ripgrep
+    state: present
+
+- name: install gpg
+  become: yes
+  ansible.builtin.package:
+    name: gpg
+    state: present
+
+- name: install htop
+  become: yes
+  ansible.builtin.package:
+    name: htop
+    state: present
+
+- name: install trash
+  become: yes
+  ansible.builtin.package:
+    name: trash-cli
+    state: present
+
+- name: install python3
+  become: yes
+  ansible.builtin.package:
+    name: python3
+    state: present

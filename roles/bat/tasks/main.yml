@@ -1,0 +1,12 @@
+- name: install bat
+  become: yes
+  ansible.builtin.package:
+    name: bat
+    state: present
+
+- name: create symbolic link /usr/bin/batcat -> ~/.local/bin/bat
+  ansible.builtin.file:
+    src: /usr/bin/batcat
+    dest: ~/.local/bin/bat
+    state: link
+  failed_when: false

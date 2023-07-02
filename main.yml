@@ -5,6 +5,8 @@
     - bash
     - neovim
     - fzf
+    - bat
+    - httpie
 
   tasks:
   - name: set zsh as login shell
