@@ -1,0 +1,12 @@
+- name: install awesome window manager
+  become: yes
+  ansible.builtin.package:
+    name: awesome
+    state: present
+
+- name: clone awesome configuration repository
+  ansible.builtin.git:
+    repo: git@github.com:Leo843/awesomewm-config.git
+    dest: ~/.config/awesome
+    depth: 1
+    accept_hostkey: true

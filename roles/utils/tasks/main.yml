@@ -51,3 +51,21 @@
   ansible.builtin.package:
     name: python3
     state: present
+
+- name: install make
+  become: yes
+  ansible.builtin.package:
+    name: make
+    state: present
+
+- name: install cmake
+  become: yes
+  ansible.builtin.package:
+    name: cmake
+    state: present
+
+- name: install gcc
+  become: yes
+  ansible.builtin.package:
+    name: gcc
+    state: present
