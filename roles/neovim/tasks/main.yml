@@ -6,7 +6,7 @@
 
 - name: clone neovim configuration repository
   ansible.builtin.git:
-    repo: git@github.com:Leo843/nvim-config.git
+    repo: https://github.com/Leo843/config-neovim.git
     dest: ~/.config/nvim
     depth: 1
     accept_hostkey: true

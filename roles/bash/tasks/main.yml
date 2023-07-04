@@ -6,7 +6,7 @@
 
 - name: clone bash configuration repository
   ansible.builtin.git:
-    repo: git@github.com:Leo843/leo-bash.git
+    repo: https://github.com/Leo843/config-bash.git
     dest: ~/.bash
     depth: 1
     accept_hostkey: true

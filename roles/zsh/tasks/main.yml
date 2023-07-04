@@ -6,7 +6,7 @@
 
 - name: clone zsh configuration repository
   ansible.builtin.git:
-    repo: git@github.com:Leo843/leo-zsh.git
+    repo: https://github.com/Leo843/config-zsh.git
     dest: ~/.zsh
     depth: 1
     accept_hostkey: true
