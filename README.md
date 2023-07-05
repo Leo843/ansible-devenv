@@ -4,23 +4,14 @@ Collection of playbooks to setup development environments
 
 ## Usage
 
-Some tasks require an ssh-agent to be setup with a valid key that can access
-private repositories.
+The script can be executed with one of the following commands.
 
 ```
-> eval $(ssh-agent)
-> ssh-add /path/to/ssh/key
-```
-
-Once the ssh-agent is setup, playbooks can be run using a local connection or
-using an ssh connection.
-
-```
-ansible-playbook main.yml --connection=local -i localhost, -u <user> -k --ask-become-pass
+sudo bash -c "$(curl -sSf https://raw.githubusercontent.com/Leo843/ansible-devenv/main/deploy)"
 ```
 
 ```
-ansible-playbook main.yml -i localhost, -u <user> -k --ask-become-pass --ssh-extra-args='-o ForwardAgent=yes'
+curl -sSf https://raw.githubusercontent.com/Leo843/ansible-devenv/main/deploy | sudo bash
 ```
 
 ## Test
