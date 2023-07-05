@@ -1,0 +1,21 @@
+#!/bin/bash
+
+WORKING_DIR=$(mktemp -d)
+
+cleanup()
+{
+  rm -rf $WORKING_DIR
+}
+
+trap cleanup EXIT
+
+apt-get update
+apt-get install -y git ansible
+
+deploy()
+{
+  git clone --depth 1 https://github.com/Leo843/ansible-devenv .
+  ansible-playbook install_devenv.yml --connection=local -i localhost, -u $USER
+}
+
+cat <(cd $WORKING_DIR && deploy)

@@ -1,4 +1,0 @@
-- name: install awesome window manager
-  hosts: all
-  roles:
-    - awesomewm
