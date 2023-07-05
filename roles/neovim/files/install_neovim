@@ -38,7 +38,7 @@ install_neovim()
   then
     CUR_VERSION=$($SYMLINK_BIN --version | head -n 1)
     NEW_VERSION=$(./squashfs-root/AppRun --version | head -n 1)
-    if [ "$CUR_VERSION" == "$NEW_VERSION" ]
+    if [ "$CUR_VERSION" = "$NEW_VERSION" ]
     then
       echo 'already up to date'
       exit 0
