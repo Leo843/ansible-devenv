@@ -1,8 +1,17 @@
-- name: install apt repository for httpie
+- name: get httpie gpg key
   become: yes
-  ansible.builtin.script:
-    cmd: install_httpie_apt_repo
-    creates: /etc/apt/sources.list.d/httpie.list
+  ansible.builtin.shell:
+    cmd: >
+      curl -SsL https://packages.httpie.io/deb/KEY.gpg |
+      gpg --dearmor -o /usr/share/keyrings/httpie.gpg
+    creates: /usr/share/keyrings/httpie.gpg
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: add httpie apt repository
+  become: yes
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/httpie.gpg] https://packages.httpie.io/deb ./"
+    state: present
   when: ansible_facts['os_family'] == "Debian"
 
 - name: install httpie
