@@ -6,6 +6,7 @@
     - bat
     - cmake
     - curl
+    - exa
     - fzf
     - gcc
     - git
