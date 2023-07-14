@@ -1,0 +1,5 @@
+- name: install make
+  become: yes
+  ansible.builtin.package:
+    name: make
+    state: present

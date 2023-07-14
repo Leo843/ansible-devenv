@@ -1,0 +1,5 @@
+- name: install gcc
+  become: yes
+  ansible.builtin.package:
+    name: gcc
+    state: present

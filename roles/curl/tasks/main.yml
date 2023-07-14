@@ -1,0 +1,5 @@
+- name: install curl
+  become: yes
+  ansible.builtin.package:
+    name: curl
+    state: present

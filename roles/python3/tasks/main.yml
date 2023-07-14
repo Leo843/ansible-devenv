@@ -1,0 +1,5 @@
+- name: install python3
+  become: yes
+  ansible.builtin.package:
+    name: python3
+    state: present

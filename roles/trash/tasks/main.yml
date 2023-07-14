@@ -1,0 +1,5 @@
+- name: install trash
+  become: yes
+  ansible.builtin.package:
+    name: trash-cli
+    state: present

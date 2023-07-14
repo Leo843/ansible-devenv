@@ -1,17 +1,29 @@
 - name: deploy development tools
   hosts: all
   roles:
-    - zsh
-    - bash
-    - neovim
-    - fzf
-    - bat
-    - httpie
     - awesomewm
+    - bash
+    - bat
+    - cmake
+    - curl
+    - fzf
+    - gcc
+    - git
+    - gpg
+    - htop
+    - httpie
+    - jq
+    - make
+    - neovim
+    - python3
+    - ripgrep
+    - trash
+    - tree
+    - zsh
 
   tasks:
-  - name: set zsh as login shell
-    become: yes
-    ansible.builtin.user:
-      name: "{{ lookup('env', 'USER') }}"
-      shell: /usr/bin/zsh
+    - name: set zsh as login shell
+      become: yes
+      ansible.builtin.user:
+        name: "{{ lookup('env', 'USER') }}"
+        shell: /usr/bin/zsh

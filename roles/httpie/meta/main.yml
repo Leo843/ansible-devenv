@@ -1,2 +1,3 @@
 dependencies:
-  - role: utils
+  - role: curl
+  - role: gpg

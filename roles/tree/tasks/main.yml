@@ -1,0 +1,5 @@
+- name: install tree
+  become: yes
+  ansible.builtin.package:
+    name: tree
+    state: present
