@@ -1,0 +1,6 @@
+neovim_version: "0.9.1"
+neovim_appimage_dir: "~/.opt/neovim"
+neovim_appimage_url: "https://github.com/neovim/neovim/releases/download/v{{ neovim_version }}/nvim.appimage"
+neovim_symlink_dir: "~/.local/bin"
+neovim_config_dir: "~/.config/nvim"
+neovim_config_repository: "https://github.com/Leo843/config-neovim.git"

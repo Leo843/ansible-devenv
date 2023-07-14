@@ -1,12 +1,44 @@
-- name: install neovim
-  ansible.builtin.script: install_neovim
-  register: install_neovim_result
-  changed_when: install_neovim_result.stdout == 'installed' or
-    install_neovim_result.stdout == 'updated'
+- name: "check current neovim version"
+  ansible.builtin.shell:
+    cmd: |
+      NVIM= "{{ neovim_appimage_dir }}"/neovim.appimage
+      NVIM_VERSION= "{{ neovim_version }}"
+      [[ -f $NVIM ]] || exit 1
+      $NVIM -v | head -n 1 | grep -F --color=never $NVIM_VERSION
+    executable: /bin/bash
+  register: nvim_version_check
+  failed_when: false
+  changed_when: nvim_version_check.rc != 0
 
-- name: clone neovim configuration repository
+- name: "create neovim directory"
+  ansible.builtin.file:
+    path: "{{ neovim_appimage_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: "download neovim v{{ neovim_version }}"
+  ansible.builtin.get_url:
+    url: "{{ neovim_appimage_url }}"
+    dest: "{{ neovim_appimage_dir }}/nvim.appimage"
+    mode: '0755'
+    force: true
+  when: nvim_version_check.rc != 0
+
+- name: "create symlink directory"
+  ansible.builtin.file:
+    path: "{{ neovim_symlink_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: "create neovim symlink"
+  ansible.builtin.file:
+    src: "{{ neovim_appimage_dir }}/nvim.appimage"
+    dest: "{{ neovim_symlink_dir }}/nvim"
+    state: link
+
+- name: "clone neovim configuration repository"
   ansible.builtin.git:
-    repo: https://github.com/Leo843/config-neovim.git
-    dest: ~/.config/nvim
+    repo: "{{ neovim_config_repository }}"
+    dest: "{{ neovim_config_dir }}"
     depth: 1
     accept_hostkey: true
