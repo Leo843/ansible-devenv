@@ -4,7 +4,7 @@
     name: bat
     state: present
 
-- name: "create symlink directory"
+- name: "create symlink directory {{ symlink_dir }}"
   ansible.builtin.file:
     path: "{{ symlink_dir }}"
     state: directory
