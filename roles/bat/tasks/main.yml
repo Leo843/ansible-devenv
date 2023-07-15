@@ -1,12 +1,17 @@
-- name: install bat
+- name: "install bat"
   become: yes
   ansible.builtin.package:
     name: bat
     state: present
 
-- name: create symbolic link /usr/bin/batcat -> ~/.local/bin/bat
+- name: "create symlink directory"
+  ansible.builtin.file:
+    path: "{{ symlink_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: "create symlink /usr/bin/batcat -> {{ symlink_dir }}/bat"
   ansible.builtin.file:
     src: /usr/bin/batcat
-    dest: ~/.local/bin/bat
+    dest: "{{ symlink_dir }}/bat"
     state: link
-  failed_when: false
