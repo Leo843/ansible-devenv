@@ -22,4 +22,4 @@
   ansible.builtin.user:
     name: "{{ ansible_user }}"
     shell: /usr/bin/zsh
-  when: set_as_default_shell
+  when: zsh_set_as_default_shell
