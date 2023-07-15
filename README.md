@@ -7,7 +7,7 @@ Collection of playbooks to setup development environments
 The playbook can be executed with the following command.
 
 ```
-sudo bash -c "$(curl -sSf https://raw.githubusercontent.com/Leo843/ansible-devenv/main/deploy)"
+bash -c "$(curl -sSf https://raw.githubusercontent.com/Leo843/ansible-devenv/main/deploy)"
 ```
 
 ## Test
