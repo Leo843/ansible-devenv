@@ -9,8 +9,15 @@ cleanup()
 
 trap cleanup EXIT
 
-apt-get update
-apt-get install -y git ansible
+if [[ ! -x $(which git) ]]; then
+  echo "ERROR Could not execute git"
+  exit 1
+fi
+
+if [[ ! -x $(which ansible) ]]; then
+  echo "ERROR Could not execute ansible"
+  exit 1
+fi
 
 deploy()
 {
