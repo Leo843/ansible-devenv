@@ -10,31 +10,33 @@
   failed_when: false
   changed_when: nvim_version_check.rc != 0
 
-- name: "create neovim directory"
-  ansible.builtin.file:
-    path: "{{ neovim_appimage_dir }}"
-    state: directory
-    mode: '0755'
+- name: "install neovim v{{ neovim_version }}"
+  block:
+    - name: "create neovim directory"
+      ansible.builtin.file:
+        path: "{{ neovim_appimage_dir }}"
+        state: directory
+        mode: '0755'
 
-- name: "download neovim v{{ neovim_version }}"
-  ansible.builtin.get_url:
-    url: "{{ neovim_appimage_url }}"
-    dest: "{{ neovim_appimage_dir }}/nvim.appimage"
-    mode: '0755'
-    force: true
+    - name: "download neovim v{{ neovim_version }}"
+      ansible.builtin.get_url:
+        url: "{{ neovim_appimage_url }}"
+        dest: "{{ neovim_appimage_dir }}/nvim.appimage"
+        mode: '0755'
+        force: true
+
+    - name: "create symlink directory"
+      ansible.builtin.file:
+        path: "{{ neovim_symlink_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: "create neovim symlink"
+      ansible.builtin.file:
+        src: "{{ neovim_appimage_dir }}/nvim.appimage"
+        dest: "{{ neovim_symlink_dir }}/nvim"
+        state: link
   when: nvim_version_check.rc != 0
-
-- name: "create symlink directory"
-  ansible.builtin.file:
-    path: "{{ neovim_symlink_dir }}"
-    state: directory
-    mode: '0755'
-
-- name: "create neovim symlink"
-  ansible.builtin.file:
-    src: "{{ neovim_appimage_dir }}/nvim.appimage"
-    dest: "{{ neovim_symlink_dir }}/nvim"
-    state: link
 
 - name: "clone neovim configuration repository"
   ansible.builtin.git:
