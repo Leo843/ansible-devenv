@@ -22,7 +22,7 @@ fi
 deploy()
 {
   git clone --depth 1 https://github.com/Leo843/ansible-devenv .
-  ansible-playbook install_devenv.yml --connection=local -i localhost, -u $USER
+  ansible-playbook install_devenv.yml --connection=local -i localhost, -u $USER -K
 }
 
 cat <(cd $WORKING_DIR && deploy)
