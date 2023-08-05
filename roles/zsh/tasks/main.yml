@@ -7,13 +7,13 @@
 - name: clone zsh configuration repository
   ansible.builtin.git:
     repo: https://github.com/Leo843/config-zsh.git
-    dest: ~/.zsh
+    dest: ~/.config/zsh
     depth: 1
     accept_hostkey: true
 
 - name: create a symbolic link to ~/.zsh/.zshrc
   ansible.builtin.file:
-    src: ~/.zsh/.zshrc
+    src: ~/.config/zsh/.zshrc
     dest: ~/.zshrc
     state: link
 
