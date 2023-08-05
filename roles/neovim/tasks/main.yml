@@ -1,14 +1,18 @@
 - name: "check current neovim version"
   ansible.builtin.shell:
     cmd: |
-      NVIM= "{{ neovim_appimage_dir }}"/neovim.appimage
-      NVIM_VERSION= "{{ neovim_version }}"
-      [[ -f $NVIM ]] || exit 1
-      $NVIM -v | head -n 1 | grep -F --color=never $NVIM_VERSION
+      if [ -x $NVIM ] && $NVIM -v | head -n 1 | grep -F $NVIM_VERSION >/dev/null
+      then
+        echo "up to date"
+      else
+        echo "not up to date"
+      fi
     executable: /bin/bash
+  environment:
+    NVIM: "{{ neovim_appimage_dir }}/nvim.appimage"
+    NVIM_VERSION: "{{ neovim_version }}"
   register: nvim_version_check
-  failed_when: false
-  changed_when: nvim_version_check.rc != 0
+  changed_when: nvim_version_check.stdout != "up to date"
 
 - name: "install neovim v{{ neovim_version }}"
   block:
@@ -36,7 +40,7 @@
         src: "{{ neovim_appimage_dir }}/nvim.appimage"
         dest: "{{ neovim_symlink_dir }}/nvim"
         state: link
-  when: nvim_version_check.rc != 0
+  when: nvim_version_check.changed
 
 - name: "clone neovim configuration repository"
   ansible.builtin.git:
