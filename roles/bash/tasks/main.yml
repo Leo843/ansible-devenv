@@ -7,13 +7,13 @@
 - name: clone bash configuration repository
   ansible.builtin.git:
     repo: https://github.com/Leo843/config-bash.git
-    dest: ~/.bash
+    dest: ~/.config/bash
     depth: 1
     accept_hostkey: true
 
 - name: create a symbolic link to ~/.bash/.bashrc
   ansible.builtin.file:
-    src: ~/.bash/.bashrc
+    src: ~/.config/bash/.bashrc
     dest: ~/.bashrc
     state: link
     force: true
