@@ -1,0 +1,5 @@
+- name: install i3lock
+  become: yes
+  ansible.builtin.package:
+    name: i3lock
+    state: present

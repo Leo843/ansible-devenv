@@ -1,0 +1,6 @@
+dependencies:
+  - role: git
+  - role: scrot
+  - role: imagemagick
+  - role: i3lock
+

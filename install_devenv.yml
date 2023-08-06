@@ -17,6 +17,7 @@
     - httpie
     - jq
     - kp
+    - lock
     - make
     - neovim
     - python3

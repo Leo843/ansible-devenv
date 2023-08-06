@@ -1,0 +1,5 @@
+- name: install imagemagick
+  become: yes
+  ansible.builtin.package:
+    name: imagemagick
+    state: present

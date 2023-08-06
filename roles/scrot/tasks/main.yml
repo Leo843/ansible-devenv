@@ -1,0 +1,5 @@
+- name: install scrot
+  become: yes
+  ansible.builtin.package:
+    name: scrot
+    state: present

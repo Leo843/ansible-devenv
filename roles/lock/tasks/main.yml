@@ -1,0 +1,13 @@
+- name: "install lock"
+  ansible.builtin.git:
+    repo: https://github.com/Leo843/script-lock.git
+    dest: ~/.opt/lock
+    depth: 1
+    accept_hostkey: true
+
+- name: "create symlink to lock"
+  ansible.builtin.file:
+    src: ~/.opt/lock/lock
+    dest: ~/.local/bin/lock
+    state: link
+    force: true
