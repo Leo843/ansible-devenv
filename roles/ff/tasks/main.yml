@@ -1,0 +1,13 @@
+- name: "install ff"
+  ansible.builtin.git:
+    repo: https://github.com/Leo843/script-ff.git
+    dest: ~/.opt/ff
+    depth: 1
+    accept_hostkey: true
+
+- name: "create symlink to ff"
+  ansible.builtin.file:
+    src: ~/.opt/ff/ff
+    dest: ~/.local/bin/ff
+    state: link
+    force: true
