@@ -1,0 +1,13 @@
+- name: "install kp"
+  ansible.builtin.git:
+    repo: https://github.com/Leo843/script-kp.git
+    dest: ~/.opt/kp
+    depth: 1
+    accept_hostkey: true
+
+- name: "create symlink to kp"
+  ansible.builtin.file:
+    src: ~/.opt/kp/kp
+    dest: ~/.local/bin/kp
+    state: link
+    force: true

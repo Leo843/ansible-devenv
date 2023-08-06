@@ -15,6 +15,7 @@
     - htop
     - httpie
     - jq
+    - kp
     - make
     - neovim
     - python3
