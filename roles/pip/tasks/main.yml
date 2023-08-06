@@ -1,0 +1,3 @@
+- name: "install pip"
+  ansible.builtin.pip:
+    name: pip==23.2.1

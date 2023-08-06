@@ -1,0 +1,3 @@
+- name: "install wheel"
+  ansible.builtin.pip:
+    name: wheel==0.41.1

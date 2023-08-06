@@ -1,3 +1,2 @@
 dependencies:
-  - role: curl
-  - role: gpg
+  - role: wheel
