@@ -1,0 +1,10 @@
+# exclude everything
+/*
+
+# except
+!roles
+!Dockerfile
+!README.md
+!deploy
+!insall_devenv.yml
+!.gitignore
