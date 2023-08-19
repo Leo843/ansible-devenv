@@ -4,7 +4,10 @@
     - awesomewm
     - bash
     - bat
+    - bear
     - brave
+    - clang
+    - clangd
     - cmake
     - curl
     - exa
