@@ -1,0 +1,5 @@
+- name: install clangd
+  become: yes
+  ansible.builtin.package:
+    name: clangd
+    state: present

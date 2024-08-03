@@ -1,0 +1,5 @@
+- name: install bear
+  become: yes
+  ansible.builtin.package:
+    name: bear
+    state: present
