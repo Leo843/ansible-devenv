@@ -1,3 +1,9 @@
+- name: "install fuse"
+  become: yes
+  ansible.builtin.package:
+    name: fuse
+    state: present
+
 - name: "check current neovim version"
   ansible.builtin.shell:
     cmd: |
