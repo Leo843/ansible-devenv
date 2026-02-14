@@ -1,6 +1,6 @@
-neovim_version: "0.9.1"
+neovim_version: "0.11.6"
 neovim_appimage_dir: "{{ lookup('env', 'HOME') }}/.opt/neovim"
-neovim_appimage_url: "https://github.com/neovim/neovim/releases/download/v{{ neovim_version }}/nvim.appimage"
+neovim_appimage_url:  "https://github.com/neovim/neovim/releases/download/v{{ neovim_version }}/nvim-linux-x86_64.appimage"
 neovim_symlink_dir: "{{ lookup('env', 'HOME') }}/.local/bin"
 neovim_config_dir: "{{ lookup('env', 'HOME') }}/.config/nvim"
 neovim_config_repository: "https://github.com/Leo843/config-neovim.git"
